@@ -2,7 +2,7 @@ library(NMOF)
 
 source('criteria_functions.R')
 
-Mm.Utype.mirror.cyc <- function(m, init = NULL, nS=1000, nT=50){
+Mm.Utype.mirror.cyc <- function(m, init = NULL, K=2000, J=1000, I=100){
   
   x0 <- init
   
@@ -17,15 +17,17 @@ Mm.Utype.mirror.cyc <- function(m, init = NULL, nS=1000, nT=50){
   
   algo <- list()
   
-  algo$nT <- nT
+  algo$nD <- K
   
-  algo$nS <- nS
+  algo$nT <- I
+  
+  algo$nS <- J
   
   algo$x0 <- x0
   
   algo$neighbour <- neighbour
   
-  OF<-d2.minus.cyc
+  OF<-offdiag.max.cyc
   
   sol <- TAopt(OF, algo = algo)
   
