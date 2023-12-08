@@ -17,8 +17,8 @@ d2 <- function(D){
   min(dist(D))^2
 }
 
-d2.minus.cyc <- function(x){
+offdiag.max.cyc <- function(x){
   X <- cyc(x)
-  D = rbind(X,-X)
-  -d2(D)
+  n <- length(x)
+  max(abs(t(X[1,]) %*% t(X[2:n,])))
 }
